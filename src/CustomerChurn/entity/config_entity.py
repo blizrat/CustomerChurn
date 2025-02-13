@@ -7,6 +7,7 @@ class DataIngestionConfig:
     source_url: str
     raw_data_dir: Path
     data_dir : Path
+    raw_data_file : str
 
 @dataclass(frozen = True)
 class DataValidationConfig:
@@ -14,4 +15,11 @@ class DataValidationConfig:
     data_dir : Path
     validation_file: str
     all_schema : dict
+
+@dataclass(frozen = True)
+class DataTransformationConfig:
+    root_dir: Path
+    data_dir: Path
+    train_data_file : str
+    test_data_file : str
 

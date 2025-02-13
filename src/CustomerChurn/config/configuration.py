@@ -1,6 +1,6 @@
 from CustomerChurn.constants import *
 from CustomerChurn.utils.common import read_yaml, create_directories
-from CustomerChurn.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from CustomerChurn.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
 
 
 class ConfigurationManager:
@@ -23,7 +23,8 @@ class ConfigurationManager:
         data_ingestion_config_obj = DataIngestionConfig(root_dir= data_ingestion_config.root_dir,
                                                         source_url= data_ingestion_config.source_url,
                                                         raw_data_dir= data_ingestion_config.raw_data_dir,
-                                                        data_dir = data_ingestion_config.data_dir)
+                                                        data_dir = data_ingestion_config.data_dir,
+                                                        raw_data_file= data_ingestion_config.raw_data_file)
         return data_ingestion_config_obj
 
     def get_data_validation_config(self) -> DataValidationConfig:
@@ -39,3 +40,13 @@ class ConfigurationManager:
 
         return data_validation_obj
 
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        data_transformation_config = self.config.data_transformation
+
+        create_directories([data_transformation_config.root_dir])
+
+        data_transformation_obj = DataTransformationConfig(root_dir = data_transformation_config.root_dir,
+                                                           data_dir = data_transformation_config.data_dir,
+                                                           test_data_file= data_transformation_config.test_data_file,
+                                                           train_data_file= data_transformation_config.train_data_file)
+        return data_transformation_obj
