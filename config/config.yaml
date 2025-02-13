@@ -3,5 +3,10 @@ artifacts_root : artifacts
 data_ingestion:
   root_dir : artifacts/data_ingestion
   source_url : https://drive.google.com/file/d/1wwmvyPlvuJHn-wSHwr1856QGcywFafej/view?usp=drive_link
-  raw_data_dir : artifacts/data_ingestion/
-  data_dir : /Users/viratsharma/Desktop/Project/CustomerChurn/Data/data.csv
+  raw_data_dir : artifacts/data_ingestion/raw_data
+  data_dir : Data/data.csv
+
+data_validation:
+  root_dir : artifacts/data_validation
+  data_dir : artifacts/data_ingestion/raw_data/raw_data.csv
+  validation_file : artifacts/validation_status.txt

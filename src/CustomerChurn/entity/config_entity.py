@@ -8,3 +8,10 @@ class DataIngestionConfig:
     raw_data_dir: Path
     data_dir : Path
 
+@dataclass(frozen = True)
+class DataValidationConfig:
+    root_dir: Path
+    data_dir : Path
+    validation_file: str
+    all_schema : dict
+
