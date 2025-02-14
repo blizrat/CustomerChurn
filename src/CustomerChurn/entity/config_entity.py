@@ -23,3 +23,19 @@ class DataTransformationConfig:
     train_data_file : str
     test_data_file : str
 
+@dataclass(frozen = True)
+class ModelTrainingConfig:
+    root_dir: Path
+    train_data_file: str
+    model_name : str
+    output_column : str
+    criterion : str
+    max_features : str
+
+@dataclass(frozen = True)
+class ModelEvaluatonConfig:
+    root_dir: Path
+    test_data_file: str
+    model_path : Path
+    output_column: str
+    metric_file : Path
