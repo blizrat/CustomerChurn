@@ -20,6 +20,7 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_dir: Path
+    scaler_path : Path
     train_data_file : str
     test_data_file : str
 

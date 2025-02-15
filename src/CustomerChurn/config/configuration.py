@@ -49,6 +49,7 @@ class ConfigurationManager:
 
         data_transformation_obj = DataTransformationConfig(root_dir = data_transformation_config.root_dir,
                                                            data_dir = data_transformation_config.data_dir,
+                                                           scaler_path=data_transformation_config.scaler_path,
                                                            test_data_file= data_transformation_config.test_data_file,
                                                            train_data_file= data_transformation_config.train_data_file)
 

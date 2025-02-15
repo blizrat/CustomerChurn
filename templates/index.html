@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #121212;
+        }
+
+        .container {
+            width: 450px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #00eaff;
+            text-shadow: 0px 0px 10px rgba(0, 234, 255, 0.8);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: linear-gradient(45deg, #00eaff, #007bff);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #007bff, #00eaff);
+            box-shadow: 0px 0px 15px rgba(0, 234, 255, 0.6);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff95;
+        }
+
+        .scaled-features {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: white;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Customer Churn Prediction</h2>
+    <form action="/" method="post">
+        <label for="CreditScore">Credit Score:</label>
+        <input type="number" name="CreditScore" required>
+
+        <label for="Geography">Geography:</label>
+        <select name="Geography" required>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Spain">Spain</option>
+        </select>
+
+        <label for="Gender">Gender:</label>
+        <select name="Gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="Age">Age:</label>
+        <input type="number" name="Age" required>
+
+        <label for="Tenure">Tenure:</label>
+        <input type="number" name="Tenure" required>
+
+        <label for="Balance">Balance:</label>
+        <input type="number" step="0.01" name="Balance" required>
+
+        <label for="NumOfProducts">Number of Products:</label>
+        <input type="number" name="NumOfProducts" required>
+
+        <label for="HasCrCard">Has Credit Card (0/1):</label>
+        <input type="number" name="HasCrCard" min="0" max="1" required>
+
+        <label for="IsActiveMember">Is Active Member (0/1):</label>
+        <input type="number" name="IsActiveMember" min="0" max="1" required>
+
+        <label for="EstimatedSalary">Estimated Salary:</label>
+        <input type="number" step="0.01" name="EstimatedSalary" required>
+
+        <button type="submit">Predict Customer Churn</button>
+    </form>
+
+    {% if prediction is not none %}
+        <div class="result">Prediction: {{ prediction }}</div>
+
+        {% if scaled_features %}
+            <div class="scaled-features">
+                <h4>Scaled Features:</h4>
+                <p>Credit Score: {{ scaled_features["Credit Score (scaled)"] }}</p>
+                <p>Balance: {{ scaled_features["Balance (scaled)"] }}</p>
+                <p>Estimated Salary: {{ scaled_features["Estimated Salary (scaled)"] }}</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>
